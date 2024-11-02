@@ -28,7 +28,7 @@ app.get("/api/ping", (req, res) => {
 // OAuth endpoint moved under /api
 app.get("/api/:client/:code", async (req, res) => {
     const { client, code } = req.params;
-    const { redirect_uri, state, domain = "github.com" } = req.query;
+    const { redirect_uri, state } = req.query;
 
     const secret = process.env[client];
 
@@ -51,7 +51,7 @@ app.get("/api/:client/:code", async (req, res) => {
     if (state) body.state = state;
 
     try {
-        const response = await fetch(`https://${domain}/login/oauth/access_token`, {
+        const response = await fetch(`https://github.com/login/oauth/access_token`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
