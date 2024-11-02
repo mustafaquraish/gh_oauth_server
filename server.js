@@ -20,6 +20,11 @@ const port = process.env.PORT || 8989;
 // CORS for API endpoints only
 app.use("/api", cors());
 
+// To check if the server is running
+app.get("/api/ping", (req, res) => {
+    res.json({ message: "pong" });
+});
+
 // OAuth endpoint moved under /api
 app.get("/api/:client/:code", async (req, res) => {
     const { client, code } = req.params;
