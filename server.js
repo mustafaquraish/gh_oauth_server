@@ -21,7 +21,7 @@ const port = process.env.PORT || 8989;
 app.use("/api", cors());
 
 // To check if the server is running
-app.get("/api/ping", (req, res) => {
+app.get("/api/ping", async (req, res) => {
     res.json({ message: "pong" });
 });
 
